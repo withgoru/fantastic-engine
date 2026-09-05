@@ -65,7 +65,7 @@ export function InputScreen({ formData, onChange, onNext, onBack }: InputScreenP
   return (
     <NeuCard className="flex flex-col gap-5">
       <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-semibold">잉여물량 등록 정보 입력</h2>
+        <h1 className="text-lg font-semibold">잉여물량 등록 정보 입력</h1>
         <p className="text-sm text-muted-foreground">
           품목, 수량, 현재 출하채널 정보를 입력하면 정산 시뮬레이션(참고용)을 보여드립니다.
         </p>

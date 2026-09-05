@@ -63,10 +63,11 @@
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
+    /* neu-bg(#e6e9ef) 위에서 WCAG AA(4.5:1) 대비를 만족하도록 shadcn 기본값보다 어둡게 조정 */
+    --muted-foreground: #5c5c5c;
     --accent: oklch(0.97 0 0);
     --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
+    --destructive: #b91c1c;
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
     --ring: oklch(0.708 0 0);
