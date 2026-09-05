@@ -1,11 +1,19 @@
 export type RegistrationIntent = 'yes' | 'no'
 
-// 실제 계산 로직은 #6에서 구현. 여기서는 화면 간에 주고받을 데이터 모양만 정의한다.
+/**
+ * 실제 판매(원화) 금액 데이터가 없어(KAMIS 등 실시간 시세 연동은 구현 범위 밖) 정산액이 아닌
+ * 정산율(%) 기준으로만 비교한다. 계산 로직은 src/lib/simulate-settlement.ts 참고.
+ */
 export interface SimulationResult {
-  estimatedAmountLowKrw: number
-  estimatedAmountHighKrw: number
   baselineFeeRateLowPercent: number
   baselineFeeRateHighPercent: number
+  baselineSettlementRateLowPercent: number
+  baselineSettlementRateHighPercent: number
+  currentFeeRatePercent: number | null
+  currentSettlementRatePercent: number | null
+  usedAssumedRange: boolean
+  differenceVsBaselineLowPercentPoints: number | null
+  differenceVsBaselineHighPercentPoints: number | null
 }
 
 export interface RegistrationFormData {
