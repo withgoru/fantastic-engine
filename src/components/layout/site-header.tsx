@@ -15,7 +15,7 @@ export function SiteHeader() {
         className="rounded-lg text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-(--neu-bg)"
         end
       >
-        잉여물량 핫딜
+        웨더테이블
       </NavLink>
       <nav className="flex flex-wrap gap-2">
         {NAV_ITEMS.map((item) => (
