@@ -4,7 +4,10 @@ import { NeuButton } from '@/components/ui/neu-button'
 import { NeuCard } from '@/components/ui/neu-card'
 import { NeuInput } from '@/components/ui/neu-input'
 import { cn } from '@/lib/utils'
+import { submitRegistrationResponse } from '@/lib/submit-registration'
 import type { RegistrationFormData, RegistrationIntent } from '@/types/registration'
+
+type SubmitStatus = 'idle' | 'submitting' | 'submitted' | 'error'
 
 interface FeedbackScreenProps {
   formData: RegistrationFormData
@@ -57,7 +60,8 @@ function IntentButton({
 
 export function FeedbackScreen({ formData, onChange, onBack, onRestart }: FeedbackScreenProps) {
   const [errors, setErrors] = useState<FormErrors>({})
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<SubmitStatus>('idle')
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const handleIntentSelect = (intent: RegistrationIntent) => {
     onChange({ registrationIntent: intent })
@@ -67,15 +71,23 @@ export function FeedbackScreen({ formData, onChange, onBack, onRestart }: Feedba
     onChange({ actualFeeRateResponsePercent: value === '' ? null : Number(value) })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const nextErrors = validate(formData)
     setErrors(nextErrors)
-    if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true)
+    if (Object.keys(nextErrors).length > 0) return
+
+    setStatus('submitting')
+    setSubmitError(null)
+    const result = await submitRegistrationResponse(formData)
+    if (result.ok) {
+      setStatus('submitted')
+    } else {
+      setStatus('error')
+      setSubmitError(result.error ?? '응답 저장에 실패했습니다. 다시 시도해주세요.')
     }
   }
 
-  if (submitted) {
+  if (status === 'submitted') {
     return (
       <NeuCard className="flex flex-col gap-5 text-center">
         <h2 className="text-lg font-semibold">응답이 저장됐습니다</h2>
@@ -129,11 +141,15 @@ export function FeedbackScreen({ formData, onChange, onBack, onRestart }: Feedba
         />
       </Field>
 
+      {submitError && <p className="text-xs text-destructive">{submitError}</p>}
+
       <div className="flex justify-between gap-3">
-        <NeuButton variant="ghost" onClick={onBack}>
+        <NeuButton variant="ghost" onClick={onBack} disabled={status === 'submitting'}>
           이전
         </NeuButton>
-        <NeuButton onClick={handleSubmit}>제출</NeuButton>
+        <NeuButton onClick={handleSubmit} disabled={status === 'submitting'}>
+          {status === 'submitting' ? '제출 중...' : '제출'}
+        </NeuButton>
       </div>
     </NeuCard>
   )
