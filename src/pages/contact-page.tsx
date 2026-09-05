@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import { ScreenShell } from '@/components/layout/screen-shell'
-import { NeuButton } from '@/components/ui/neu-button'
 import { NeuCard } from '@/components/ui/neu-card'
 
 const CONTACT_EMAIL = 'fromgoru@gmail.com'
@@ -9,9 +7,6 @@ export function ContactPage() {
   return (
     <ScreenShell>
       <NeuCard className="flex flex-col gap-5">
-        <Link to="/" className="self-start">
-          <NeuButton variant="ghost">← 메인으로</NeuButton>
-        </Link>
         <h1 className="text-lg font-semibold">Contact</h1>
         <p className="text-sm text-muted-foreground">
           문의사항은 이메일로 연락해주세요.
