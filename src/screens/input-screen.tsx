@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { AutocompleteInput } from '@/components/ui/autocomplete-input'
 import { Field } from '@/components/ui/field'
 import { NeuButton } from '@/components/ui/neu-button'
 import { NeuCard } from '@/components/ui/neu-card'
 import { NeuInput } from '@/components/ui/neu-input'
+import { PRODUCE_ITEMS } from '@/lib/produce-items'
 import type { RegistrationFormData } from '@/types/registration'
 
 interface InputScreenProps {
@@ -72,9 +74,10 @@ export function InputScreen({ formData, onChange, onNext, onBack }: InputScreenP
       </div>
 
       <Field label="품목" required error={errors.item}>
-        <NeuInput
+        <AutocompleteInput
           value={formData.item}
-          onChange={(event) => onChange({ item: event.target.value })}
+          onChange={(value) => onChange({ item: value })}
+          suggestions={PRODUCE_ITEMS}
           placeholder="예: 배추"
         />
       </Field>
