@@ -28,7 +28,12 @@ function App() {
         />
       )}
       {step === 'feedback' && (
-        <FeedbackScreen formData={formData} onBack={goBack} onRestart={restart} />
+        <FeedbackScreen
+          formData={formData}
+          onChange={updateFormData}
+          onBack={goBack}
+          onRestart={restart}
+        />
       )}
     </ScreenShell>
   )
