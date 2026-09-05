@@ -49,7 +49,7 @@ export function ResultScreen({ formData, onChange, onNext, onBack }: ResultScree
   return (
     <NeuCard className="flex flex-col gap-5">
       <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-semibold">정산 시뮬레이션 결과</h2>
+        <h1 className="text-lg font-semibold">정산 시뮬레이션 결과</h1>
         <p className="text-xs font-medium text-destructive">
           참고용 모의 계산입니다. 실제 계약조건이 아니며, 실제 결제는 이루어지지 않습니다.
         </p>

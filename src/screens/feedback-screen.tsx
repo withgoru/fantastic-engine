@@ -90,7 +90,7 @@ export function FeedbackScreen({ formData, onChange, onBack, onRestart }: Feedba
   if (status === 'submitted') {
     return (
       <NeuCard className="flex flex-col gap-5 text-center">
-        <h2 className="text-lg font-semibold">응답이 저장됐습니다</h2>
+        <h1 className="text-lg font-semibold">응답이 저장됐습니다</h1>
         <p className="text-sm text-muted-foreground">
           소중한 응답 감사합니다. 남겨주신 등록 의향과 실제 수수료 응답은 이 서비스가 실제로
           필요한지 검증하는 목적으로만 활용됩니다.
@@ -103,7 +103,7 @@ export function FeedbackScreen({ formData, onChange, onBack, onRestart }: Feedba
   return (
     <NeuCard className="flex flex-col gap-5">
       <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-semibold">마지막으로 몇 가지만 답해주세요</h2>
+        <h1 className="text-lg font-semibold">마지막으로 몇 가지만 답해주세요</h1>
         <p className="text-sm text-muted-foreground">
           앞서 보신 결과는 참고용 모의 계산입니다. 실제 등록 의향과 현재 채널의 실제 수수료를
           알려주시면 서비스 검증에 큰 도움이 됩니다.
