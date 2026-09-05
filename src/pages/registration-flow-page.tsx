@@ -12,12 +12,15 @@ export function RegistrationFlowPage() {
 
   return (
     <ScreenShell>
-      <div className="mb-4 flex justify-center gap-3">
+      <div className="mb-4 flex flex-wrap justify-center gap-3">
         <Link to="/proposal">
           <NeuButton variant="ghost">사업계획서 보기</NeuButton>
         </Link>
         <Link to="/prompts">
           <NeuButton variant="ghost">프롬프트 보기</NeuButton>
+        </Link>
+        <Link to="/contact">
+          <NeuButton variant="ghost">Contact</NeuButton>
         </Link>
       </div>
 
