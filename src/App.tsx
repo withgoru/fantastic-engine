@@ -1,11 +1,31 @@
-import { Button } from '@/components/ui/button'
+import { ScreenShell } from '@/components/layout/screen-shell'
+import { useRegistrationFlow } from '@/hooks/use-registration-flow'
+import { FeedbackScreen } from '@/screens/feedback-screen'
+import { InputScreen } from '@/screens/input-screen'
+import { LandingScreen } from '@/screens/landing-screen'
+import { ResultScreen } from '@/screens/result-screen'
 
 function App() {
+  const { step, formData, updateFormData, goNext, goBack, restart } = useRegistrationFlow()
+
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <h1 className="text-2xl font-semibold">fantastic-engine</h1>
-      <Button>Tailwind + shadcn/ui ready</Button>
-    </main>
+    <ScreenShell>
+      {step === 'landing' && <LandingScreen onStart={goNext} />}
+      {step === 'input' && (
+        <InputScreen
+          formData={formData}
+          onChange={updateFormData}
+          onNext={goNext}
+          onBack={goBack}
+        />
+      )}
+      {step === 'result' && (
+        <ResultScreen formData={formData} onNext={goNext} onBack={goBack} />
+      )}
+      {step === 'feedback' && (
+        <FeedbackScreen formData={formData} onBack={goBack} onRestart={restart} />
+      )}
+    </ScreenShell>
   )
 }
 
