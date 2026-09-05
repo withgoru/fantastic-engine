@@ -20,7 +20,12 @@ function App() {
         />
       )}
       {step === 'result' && (
-        <ResultScreen formData={formData} onNext={goNext} onBack={goBack} />
+        <ResultScreen
+          formData={formData}
+          onChange={updateFormData}
+          onNext={goNext}
+          onBack={goBack}
+        />
       )}
       {step === 'feedback' && (
         <FeedbackScreen formData={formData} onBack={goBack} onRestart={restart} />
